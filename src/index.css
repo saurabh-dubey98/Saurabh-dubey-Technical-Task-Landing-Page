@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+	font-family: "Montserrat", sans-serif;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+	.hero_bg {
+		background-image: url("./assets/hero-bg.png");
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-position: 70px 320px;
+	}
+
+	.wave::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		top: 0;
+		background-repeat: repeat;
+		height: 10px;
+		background-size: 20px 20px;
+		background-image: radial-gradient(
+			circle at 10px -5px,
+			transparent 12px,
+			#fff 13px
+		);
+	}
+	.wave::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		background-repeat: repeat;
+		height: 15px;
+		background-size: 40px 20px;
+		background-image: radial-gradient(
+			circle at 10px 15px,
+			#fff 12px,
+			transparent 13px
+		);
+	}
+
+	.box {
+		background-image: radial-gradient(
+					201.25px at 50% 270px,
+					#000 99%,
+					#0000 101%
+				)
+				calc(50% - 180px) 0/360px 51% repeat-x,
+			radial-gradient(201.25px at 50% -180px, #0000 99%, #000 101%) 50% 90px/360px
+				calc(51% - 90px) repeat-x,
+			radial-gradient(201.25px at 50% calc(100% - 270px), #000 99%, #0000 101%)
+				calc(50% - 180px) 100%/360px 51% repeat-x,
+			radial-gradient(201.25px at 50% calc(100% + 180px), #0000 99%, #000 101%)
+				50% calc(100% - 90px) / 360px calc(51% - 90px) repeat-x;
+	}
+	/* .box {
+		--mask: radial-gradient(201.25px at 50% 270px, #000 99%, #0000 101%)
+				calc(50% - 180px) 0/360px 51% repeat-x,
+			radial-gradient(201.25px at 50% -180px, #0000 99%, #000 101%) 50% 90px/360px
+				calc(51% - 90px) repeat-x,
+			radial-gradient(201.25px at 50% calc(100% - 270px), #000 99%, #0000 101%)
+				calc(50% - 180px) 100%/360px 51% repeat-x,
+			radial-gradient(201.25px at 50% calc(100% + 180px), #0000 99%, #000 101%)
+				50% calc(100% - 90px) / 360px calc(51% - 90px) repeat-x;
+		-webkit-mask: var(--mask);
+		mask: var(--mask);
+	} */
+}
