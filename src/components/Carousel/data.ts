@@ -1,7 +1,7 @@
-import img1 from "../../assets/cr-user1.png"
-import img2 from "../../assets/cr-user2.png"
-import img3 from "../../assets/cr-user2.png"
-import img4 from "../../assets/cr-user3.png"
+import img1 from "../../assets/cr-user1.jpg"
+import img2 from "../../assets/cr-user2.jpg"
+import img3 from "../../assets/cr-user3.jpg"
+import img4 from "../../assets/cr-user4.jpg"
 
 export const carouselData = [
 	{

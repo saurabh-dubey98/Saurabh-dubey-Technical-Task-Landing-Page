@@ -5,7 +5,7 @@ import heroBg from "../../assets/hero-bg.png"
 const Hero = () => {
 	return (
 		<section className=" h-[calc(100vh-5rem)] grid grid-cols-[75%_25%] items-center ">
-			<div className="pt-16 font-light self-start">
+			<div className="pt-16 font-light ">
 				<div className="text-7xl">
 					<h2>Reproductive health</h2>
 					<span className="text-[#F84F7B]">reinvented</span>
@@ -25,8 +25,8 @@ const Hero = () => {
 					<img className="object-contain w-full" src={heroBg} />
 				</div>
 			</div>
-			<div className="">
-				<img src={heroImg} />
+			<div className=" flex items-center justify-center">
+				<img className="w-full object-contain max-w-[540px]" src={heroImg} />
 			</div>
 		</section>
 	)

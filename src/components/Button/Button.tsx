@@ -2,6 +2,7 @@ type Props = {
 	type: "submit" | "reset" | "button"
 	variant: "dark" | "light"
 	children: string
+	onClick: (arg: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 type Style = {
@@ -9,13 +10,17 @@ type Style = {
 	light: string
 }
 
-const Button = ({ type, variant, children }: Props) => {
+const Button = ({ type, variant, children, onClick }: Props) => {
 	const style: Style = {
 		dark: "bg-[#212024] rounded-[112.222px] text-white text-sm",
 		light: "bg-gray rounded-[112.222px] text-white text-sm",
 	}
 	return (
-		<button className={`py-[10px] px-6 ${style[variant]}`} type={type}>
+		<button
+			onClick={onClick}
+			className={`py-[10px] px-6 ${style[variant]}`}
+			type={type}
+		>
 			{children}
 		</button>
 	)

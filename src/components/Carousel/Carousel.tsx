@@ -3,7 +3,11 @@ import { TfiArrowCircleRight, TfiArrowCircleLeft } from "react-icons/tfi"
 import { RxDot, RxDotFilled } from "react-icons/rx"
 import { carouselData } from "./data"
 
+// Image
 import waveTop from "../../assets/wave-top.svg"
+
+// Components
+import CarousalItem from "./CarousalItem"
 
 const Carousel = () => {
 	const [currentIndex, setCurrentIndex] = useState<number>(0)
@@ -31,26 +35,20 @@ const Carousel = () => {
 
 	return (
 		<>
-			<div className="-ml-24 -mr-24 border-b-2 -mb-24">
+			<div className="-ml-24 -mr-24 -mb-[2px]">
 				<img src={waveTop} className="min-w-full " />
 			</div>
 			<div className=" bg-black -ml-24 -mr-24">
 				<div className="h-full mx-24 px-28">
 					<div className="h-full flex items-center">
-						<div className="m-auto w-[800px] overflow-hidden">
+						<div className="m-auto w-[920px] overflow-hidden">
 							{/* Carousel item */}
 							<div
 								className="flex transition-transform duration-300"
 								style={{ transform: `translate(-${currentIndex * 100}%)` }}
 							>
 								{carouselData.map((item) => (
-									<div key={item.id} className="flex items-start min-w-full">
-										<img src={item.image} />
-
-										<p className="text-white text-xl font-light tracking-wide leading-8">
-											{item.text}
-										</p>
-									</div>
+									<CarousalItem key={item.id} item={item} />
 								))}
 							</div>
 
@@ -65,6 +63,7 @@ const Carousel = () => {
 										if (idx === currentIndex) {
 											return (
 												<RxDotFilled
+													key={idx}
 													onClick={() => dotClickHandler(idx)}
 													className="text-white w-4 h-4 cursor-pointer"
 												/>
@@ -72,6 +71,7 @@ const Carousel = () => {
 										} else {
 											return (
 												<RxDot
+													key={idx}
 													onClick={() => dotClickHandler(idx)}
 													className="text-white w-4 h-4 cursor-pointer"
 												/>
@@ -88,10 +88,9 @@ const Carousel = () => {
 					</div>
 				</div>
 			</div>
-			<div className="-ml-24 -mr-24 relative -mt-24 -z-50 block">
+			<div className="-ml-24 -mr-24 -mt-1 relative -z-50 block">
 				<img src={waveTop} className="min-w-full rotate-180" />
 			</div>
-			sd
 		</>
 	)
 }
