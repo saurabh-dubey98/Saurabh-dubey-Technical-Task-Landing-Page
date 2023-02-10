@@ -2,6 +2,9 @@ import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import { HiOutlineUserCircle } from "react-icons/hi"
 
+// Context
+import { useAuthContext } from "../../context/AuthContext"
+
 // Components
 import { Button } from ".."
 
@@ -11,6 +14,8 @@ type Props = {
 
 const Navbar = ({ scrollToContactUsRef }: Props) => {
 	const [showMenu, setShowMenu] = useState<boolean>(false)
+
+	const { isAuth, user, logout } = useAuthContext()
 
 	const toggle = () => {
 		setShowMenu((prev) => !prev)
@@ -55,14 +60,19 @@ const Navbar = ({ scrollToContactUsRef }: Props) => {
 				<Button onClick={scrollToContactUsRef} type="button" variant="dark">
 					Contact Us
 				</Button>
-				<HiOutlineUserCircle
-					onClick={toggle}
-					className="w-10 h-10 cursor-pointer duration-300 text-black hover:text-black/70 active:text-black/50"
-				/>
+				{isAuth && (
+					<HiOutlineUserCircle
+						onClick={toggle}
+						className="w-10 h-10 cursor-pointer duration-300 text-black hover:text-black/70 active:text-black/50"
+					/>
+				)}
 				{showMenu && (
-					<div className="absolute top-14 right-0 rounded-[30.5993px] border-[0.87px] border-black bg-white overflow-hidden py-2 px-4">
-						<div className="font-semibold text-sm">Saurabh Dubey</div>
-						<button className="bg-red-800/80 duration-300 active:bg-red-800/90 hover:bg-red-800 font-semibold text-sm text-white px-3 py-[6px] mt-2 rounded-[86.5993px]">
+					<div className="absolute top-14 right-0 rounded-[25.5993px] border-[0.87px] border-black bg-white overflow-hidden py-2 px-4">
+						<div className="font-semibold text-sm">{user?.email}</div>
+						<button
+							onClick={logout}
+							className="bg-red-800/80 duration-300 active:bg-red-800/90 hover:bg-red-800 font-semibold text-sm text-white px-3 py-[6px] mt-2 rounded-[86.5993px]"
+						>
 							Logout
 						</button>
 					</div>

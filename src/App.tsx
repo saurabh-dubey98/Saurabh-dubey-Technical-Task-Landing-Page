@@ -1,8 +1,12 @@
 import { useRef } from "react"
 import { Routes, Route } from "react-router-dom"
 
+// Context
+import { AuthProvider } from "./context/AuthContext"
+
 // Pages
 import Home from "./pages/Home"
+import Register from "./pages/Register"
 
 // Components
 import { Navbar, Footer } from "./components"
@@ -16,11 +20,14 @@ function App() {
 	}
 	return (
 		<main className="m-auto w-full px-24">
-			<Navbar scrollToContactUsRef={scrollToContactUsRef} />
-			<Routes>
-				<Route path="/" element={<Home destinationRef={destinationRef} />} />
-			</Routes>
-			<Footer />
+			<AuthProvider>
+				<Navbar scrollToContactUsRef={scrollToContactUsRef} />
+				<Routes>
+					<Route path="/" element={<Home destinationRef={destinationRef} />} />
+					<Route path="/register" element={<Register />} />
+				</Routes>
+				<Footer />
+			</AuthProvider>
 		</main>
 	)
 }
