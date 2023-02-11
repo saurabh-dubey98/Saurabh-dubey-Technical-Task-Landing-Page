@@ -9,7 +9,7 @@ type Props = {
 const CarousalItem = ({ item }: Props) => {
 	return (
 		<div key={item.id} className="flex items-start gap-6 min-w-full">
-			<div className="max-w-[180px] w-full h-[220px] overflow-hidden rounded-[24px] border-[0.87239px] border-white/50">
+			<div className="max-w-[170px] w-full h-[200px] overflow-hidden rounded-[24px] border-[0.87239px] border-white/20">
 				<img className="w-full h-full object-cover" src={item.image} />
 			</div>
 

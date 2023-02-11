@@ -12,7 +12,7 @@ type Style = {
 
 const Button = ({ type, variant, children, onClick }: Props) => {
 	const style: Style = {
-		dark: "bg-[#212024] rounded-[112.222px] text-white text-sm",
+		dark: "bg-[#212024] rounded-[112.222px] text-white text-sm duration-300 hover:bg-[#212024]/80",
 		light: "bg-gray rounded-[112.222px] text-white text-sm",
 	}
 	return (

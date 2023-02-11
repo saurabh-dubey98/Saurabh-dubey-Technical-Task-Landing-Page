@@ -37,7 +37,7 @@ const Hero = () => {
 
 				<Link
 					to="/register"
-					className="bg-black text-white rounded-[1000px] px-6 py-3 flex items-center gap-3 w-fit mt-6"
+					className="bg-black text-white duration-300 hover:bg-black/80 rounded-[1000px] px-6 py-3 flex items-center gap-3 w-fit mt-6"
 				>
 					Get Started <FiArrowRight />
 				</Link>

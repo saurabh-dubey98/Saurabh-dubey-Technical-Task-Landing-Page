@@ -8,7 +8,8 @@ import cardImg3 from "../../assets/card-img3.png"
 const Cards = () => {
 	return (
 		<section className="m-auto max-w-[1200px] w-full">
-			<div className="grid grid-cols-2 gap-5">
+			<div className="grid grid-cols-[1fr_480px] gap-10 mb-20">
+				{/* <div className="grid grid-cols-2 gap-5"> */}
 				<motion.div
 					initial={{ opacity: 0 }}
 					whileInView={{
@@ -47,7 +48,7 @@ const Cards = () => {
 						Read More
 					</motion.button>
 				</motion.div>
-				<div className="w-[512px] h-[512px] justify-self-end bg-[#FFD8E2] overflow-hidden rounded-[86.5993px] relative">
+				<div className="w-[480px] h-[480px] justify-self-end bg-[#FFD8E2] overflow-hidden rounded-[86.5993px] relative">
 					<img className="w-full object-contain" src={cardImg1} />
 					<img
 						className="object-contain z-50 absolute top-0 w-[331px]"
@@ -55,8 +56,9 @@ const Cards = () => {
 					/>
 				</div>
 			</div>
-			<div className="grid grid-cols-2 gap-5 mt-20">
-				<div className="w-[512px] h-[512px] justify-self-start bg-[#FFD8E2] overflow-hidden rounded-[86.5993px] relative">
+			<div className="grid grid-cols-[480px_1fr] gap-10">
+				{/* <div className="grid grid-cols-2 gap-5 mt-20"> */}
+				<div className="w-[480px] h-[480px] justify-self-start bg-[#FFD8E2] overflow-hidden rounded-[86.5993px] relative">
 					<img className="w-full h-full object-contain" src={cardImg2} />
 				</div>
 				<motion.div
