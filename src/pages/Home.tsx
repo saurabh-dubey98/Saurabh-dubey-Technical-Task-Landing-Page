@@ -1,3 +1,6 @@
+// Animation
+import { motion } from "framer-motion"
+
 import {
 	Accordion,
 	Cards,
@@ -13,7 +16,11 @@ type Props = {
 
 const Home = ({ destinationRef }: Props) => {
 	return (
-		<div>
+		<motion.div
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+		>
 			<Hero />
 			<Features />
 			<Carousel />
@@ -21,7 +28,7 @@ const Home = ({ destinationRef }: Props) => {
 			<Accordion />
 			<span ref={destinationRef} />
 			<ContactUs />
-		</div>
+		</motion.div>
 	)
 }
 

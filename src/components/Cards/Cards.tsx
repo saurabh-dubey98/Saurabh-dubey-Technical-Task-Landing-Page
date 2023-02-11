@@ -1,3 +1,5 @@
+import { motion } from "framer-motion"
+
 // Images  for card
 import cardImg1 from "../../assets/card-img1.png"
 import cardImg2 from "../../assets/card-img2.png"
@@ -7,19 +9,44 @@ const Cards = () => {
 	return (
 		<section className="m-auto max-w-[1200px] w-full">
 			<div className="grid grid-cols-2 gap-5">
-				<div className="w-full flex flex-col justify-center items-start">
-					<h4 className="text-3xl text-black mb-4">Lorem Ipsum</h4>
-					<p className="text-black font-normal mb-5">
+				<motion.div
+					initial={{ opacity: 0 }}
+					whileInView={{
+						opacity: 1,
+						transition: { staggerChildren: 0.1, duration: 0.8 },
+					}}
+					viewport={{ once: true, margin: "0px 0px -200px 0px" }}
+					className="w-full flex flex-col justify-center items-start"
+				>
+					<motion.h4
+						initial={{ y: 40, opacity: 0 }}
+						whileInView={{ y: 0, opacity: 1, transition: { duration: 0.8 } }}
+						viewport={{ once: true }}
+						className="text-3xl text-black mb-4"
+					>
+						Lorem Ipsum
+					</motion.h4>
+					<motion.p
+						initial={{ y: 40, opacity: 0 }}
+						whileInView={{ y: 0, opacity: 1, transition: { duration: 0.8 } }}
+						viewport={{ once: true }}
+						className="text-black font-normal mb-5"
+					>
 						Lorem ipsum dolor sit amet consectetur. Consectetur velit consequat
 						orci arcu egestas enim morbi neque pharetra. Id feugiat ullamcorper
 						quis suscipit tempor ullamcorper aliquam consequat. In euismod a in
 						amet. Interdum ut phasellus aliquet eget molestie risus velit ipsum
 						consectetur. Amet bibendum cras porttitor nullam.
-					</p>
-					<button className="outline-none border-none text-sm text-white bg-[#212024] rounded-[112.222px] py-3 px-6 duration-300 hover:bg-[#212024]/90">
+					</motion.p>
+					<motion.button
+						initial={{ y: 40, opacity: 0 }}
+						whileInView={{ y: 0, opacity: 1, transition: { duration: 0.3 } }}
+						viewport={{ once: true }}
+						className="outline-none border-none text-sm text-white bg-[#212024] rounded-[112.222px] py-3 px-6 duration-300 hover:bg-[#212024]/90"
+					>
 						Read More
-					</button>
-				</div>
+					</motion.button>
+				</motion.div>
 				<div className="w-[512px] h-[512px] justify-self-end bg-[#FFD8E2] overflow-hidden rounded-[86.5993px] relative">
 					<img className="w-full object-contain" src={cardImg1} />
 					<img
@@ -32,19 +59,44 @@ const Cards = () => {
 				<div className="w-[512px] h-[512px] justify-self-start bg-[#FFD8E2] overflow-hidden rounded-[86.5993px] relative">
 					<img className="w-full h-full object-contain" src={cardImg2} />
 				</div>
-				<div className="w-full  flex flex-col justify-center items-start">
-					<h4 className="text-3xl text-black mb-4">Lorem Ipsum</h4>
-					<p className="text-black font-normal mb-5">
+				<motion.div
+					initial={{ opacity: 0 }}
+					whileInView={{
+						opacity: 1,
+						transition: { staggerChildren: 0.1, duration: 0.8 },
+					}}
+					viewport={{ once: true, margin: "0px 0px -200px 0px" }}
+					className="w-full  flex flex-col justify-center items-start"
+				>
+					<motion.h4
+						initial={{ y: 40, opacity: 0 }}
+						whileInView={{ y: 0, opacity: 1, transition: { duration: 0.8 } }}
+						viewport={{ once: true }}
+						className="text-3xl text-black mb-4"
+					>
+						Lorem Ipsum
+					</motion.h4>
+					<motion.p
+						initial={{ y: 40, opacity: 0 }}
+						whileInView={{ y: 0, opacity: 1, transition: { duration: 0.8 } }}
+						viewport={{ once: true }}
+						className="text-black font-normal mb-5"
+					>
 						Lorem ipsum dolor sit amet consectetur. Consectetur velit consequat
 						orci arcu egestas enim morbi neque pharetra. Id feugiat ullamcorper
 						quis suscipit tempor ullamcorper aliquam consequat. In euismod a in
 						amet. Interdum ut phasellus aliquet eget molestie risus velit ipsum
 						consectetur. Amet bibendum cras porttitor nullam.
-					</p>
-					<button className="outline-none border-none text-sm text-white bg-[#212024] rounded-[112.222px] py-3 px-6 duration-300 hover:bg-[#212024]/90">
+					</motion.p>
+					<motion.button
+						initial={{ y: 40, opacity: 0 }}
+						whileInView={{ y: 0, opacity: 1, transition: { duration: 0.3 } }}
+						viewport={{ once: true }}
+						className="outline-none border-none text-sm text-white bg-[#212024] rounded-[112.222px] py-3 px-6 duration-300 hover:bg-[#212024]/90"
+					>
 						Read More
-					</button>
-				</div>
+					</motion.button>
+				</motion.div>
 			</div>
 		</section>
 	)

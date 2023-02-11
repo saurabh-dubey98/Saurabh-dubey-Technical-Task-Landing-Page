@@ -25,6 +25,7 @@ type AuthContextType = {
 		name: string
 		email: string
 	} | null
+	isLoading: boolean
 }
 
 const AuthContext = createContext<AuthContextType | null>(null)
@@ -41,9 +42,11 @@ if (getUser) {
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const [isAuth, setIsAuth] = useState(getUser ? true : false)
 	const [user, setUser] = useState<any>(getUser)
+	const [isLoading, setIsLoading] = useState<boolean>(false)
 
 	const registerUser = async (userData: RegisterDataType) => {
 		try {
+			setIsLoading(true)
 			const res = await axios.post("http://httpbin.org/post", userData)
 			const data = await res.data.json
 			if (data) {
@@ -52,15 +55,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 					"user",
 					JSON.stringify({ name: data.name, email: data.email, jwt: jwt })
 				)
+				setIsLoading(false)
 				window.location.assign("/")
 			}
 		} catch (error) {
 			setIsAuth(false)
 			setUser(null)
+			setIsLoading(false)
 		}
 	}
 	const loginUser = async (userData: LoginDataType) => {
 		try {
+			setIsLoading(true)
 			const res = await axios.post("http://httpbin.org/post", userData)
 			const data = await res.data.json
 			if (data) {
@@ -69,11 +75,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 					"user",
 					JSON.stringify({ email: data.email, jwt: jwt })
 				)
+				setIsLoading(false)
 				window.location.assign("/")
 			}
 		} catch (error) {
 			setIsAuth(false)
 			setUser(null)
+			setIsLoading(false)
 		}
 	}
 
@@ -84,7 +92,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
 	return (
 		<AuthContext.Provider
-			value={{ registerUser, loginUser, logout, user, isAuth }}
+			value={{ registerUser, loginUser, logout, user, isAuth, isLoading }}
 		>
 			{children}
 		</AuthContext.Provider>

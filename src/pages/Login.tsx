@@ -1,10 +1,14 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { Navigate } from "react-router"
+
+// Animation
+import { motion } from "framer-motion"
 
 // Context
 import { useAuthContext } from "../context/AuthContext"
 
 // Components
-import { Input } from "../components"
+import { Input, LoadingSpinner } from "../components"
 import { Link } from "react-router-dom"
 
 type UserType = {
@@ -25,7 +29,7 @@ const Login = () => {
 		password: "",
 	})
 
-	const { loginUser } = useAuthContext()
+	const { loginUser, isLoading, isAuth } = useAuthContext()
 
 	const validate = () => {
 		const errors = {
@@ -64,8 +68,17 @@ const Login = () => {
 		}
 	}
 
+	if (isAuth) {
+		return <Navigate to="/" />
+	}
+
 	return (
-		<section className="min-h-[calc(100vh-10rem)] w-full pt-20">
+		<motion.section
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			className="min-h-[calc(100vh-10rem)] w-full pt-20"
+		>
 			<div className="max-w-[400px] w-full m-auto pb-8 pt-6 shadow-lg px-8 rounded-3xl bg-white border-[0.01px] border-gray-100">
 				<h2 className="text-center text-[#394252] font-semibold text-2xl">
 					Login
@@ -108,13 +121,13 @@ const Login = () => {
 
 					<button
 						type="submit"
-						className="min-w-full py-3 font-semibold text-white text-sm mt-8 bg-[#0071E3] duration-300 rounded-3xl hover:bg-[#0071E3]/80"
+						className="min-w-full h-[45px] flex items-center justify-center font-semibold text-white text-sm mt-8 bg-[#0071E3] duration-300 rounded-3xl hover:bg-[#0071E3]/80"
 					>
-						Login
+						{isLoading ? <LoadingSpinner /> : "Login"}
 					</button>
 				</form>
 			</div>
-		</section>
+		</motion.section>
 	)
 }
 

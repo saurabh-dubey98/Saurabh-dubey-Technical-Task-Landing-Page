@@ -1,4 +1,5 @@
 // Images
+import { motion } from "framer-motion"
 import waveImg from "../../assets/contact-us-wave.svg"
 import bgImg from "../../assets/contactus-bg.png"
 
@@ -18,17 +19,43 @@ const ContactUs = () => {
 			<section className=" bg-[#F84F7B] h-96">
 				<div className="mx-24 grid grid-cols-2 gap-4 py-10 px-20">
 					<div>
-						<div className="max-w-[800px] ">
-							<h3 className="text-4xl mb-4 text-white font-light">
+						<motion.div
+							initial={{ opacity: 0 }}
+							whileInView={{
+								opacity: 1,
+								transition: { staggerChildren: 0.1, duration: 0.8 },
+							}}
+							viewport={{ once: true, margin: "0px 0px -200px 0px" }}
+							className="max-w-[800px] "
+						>
+							<motion.h3
+								initial={{ y: 40, opacity: 0 }}
+								whileInView={{
+									y: 0,
+									opacity: 1,
+									transition: { duration: 0.8 },
+								}}
+								viewport={{ once: true }}
+								className="text-4xl mb-4 text-white font-light"
+							>
 								Contact Us
-							</h3>
-							<p className="text-sm text-white leading-7 tracking-wider">
+							</motion.h3>
+							<motion.p
+								initial={{ y: 40, opacity: 0 }}
+								whileInView={{
+									y: 0,
+									opacity: 1,
+									transition: { duration: 0.8 },
+								}}
+								viewport={{ once: true }}
+								className="text-sm text-white leading-7 tracking-wider"
+							>
 								Lorem ipsum dolor sit amet consectetur. Eget cursus ullamcorper
 								mauris faucibus tristique libero justo. Felis elementum
 								sollicitudin dolor urna accumsan. Urna adipiscing magnis
 								pulvinar ipsum potenti ristique justo.
-							</p>
-						</div>
+							</motion.p>
+						</motion.div>
 					</div>
 					<div className=" flex justify-end">
 						<form className="grid grid-cols-1 gap-5 max-w-[400px] w-full">

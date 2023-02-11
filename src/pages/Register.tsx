@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-import { Input } from "../components"
+import { useState } from "react"
+import { Link, Navigate } from "react-router-dom"
+import { Input, LoadingSpinner } from "../components"
+
+// Animation
+import { motion } from "framer-motion"
 
 // Context
 import { useAuthContext } from "../context/AuthContext"
@@ -24,7 +27,7 @@ const Register = () => {
 		phone: "",
 	})
 
-	const { registerUser } = useAuthContext()
+	const { registerUser, isLoading, isAuth } = useAuthContext()
 
 	const validate = () => {
 		const errors = {
@@ -47,6 +50,9 @@ const Register = () => {
 
 		if (user.pwd.length < 8) {
 			errors.pwd = "Password must be 8 or more characters!"
+		}
+		if (user.pwd2.length < 8) {
+			errors.pwd2 = "Password must be 8 or more characters!"
 		}
 		if (user.pwd !== user.pwd2) {
 			errors.pwd2 = "Password must equal!"
@@ -102,8 +108,17 @@ const Register = () => {
 		}
 	}
 
+	if (isAuth) {
+		return <Navigate to="/" />
+	}
+
 	return (
-		<section className="min-h-[calc(100vh-10rem)] w-full">
+		<motion.section
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			className="min-h-[calc(100vh-10rem)] w-full"
+		>
 			<div className="max-w-[600px] w-full m-auto py-11 ">
 				<div>
 					<h2 className="text-[#394252] font-bold text-4xl">
@@ -171,9 +186,9 @@ const Register = () => {
 					</div>
 					<button
 						type="submit"
-						className="bg-[#7265E3] py-[14px] px-8 mt-4 text-white text-sm font-medium rounded-[46px] shadow-lg shadow-[rgba(114, 101, 227, 0.45)]"
+						className="bg-[#7265E3] duration-300 hover:bg-[#7265E3]/80 h-12 w-48 mt-4 flex justify-center items-center text-white text-sm font-medium rounded-[46px] shadow-lg shadow-[rgba(114, 101, 227, 0.45)]"
 					>
-						Register Account
+						{isLoading ? <LoadingSpinner /> : "Register Account"}
 					</button>
 				</form>
 				<span className="block text-[#394252] font-medium text-sm mt-12">
@@ -186,7 +201,7 @@ const Register = () => {
 					</Link>
 				</span>
 			</div>
-		</section>
+		</motion.section>
 	)
 }
 

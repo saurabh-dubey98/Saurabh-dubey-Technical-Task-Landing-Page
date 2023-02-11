@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import { IoIosArrowDown } from "react-icons/io"
+import { HiOutlineEyeOff, HiOutlineEye } from "react-icons/hi"
+
+// Images
 import indFlag from "../../assets/ind-flag.png"
 import ausFlag from "../../assets/aus-flag.png"
-import { useMemo } from "react"
 
 type BaseProps = {
 	value: string
@@ -88,7 +90,7 @@ const Password = ({
 					onChange={(e) => onChange(e)}
 					type={showPwd ? "text" : "password"}
 					id={name}
-					className={`block pl-6 pr-32 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-[43px] border-[1px]  appearance-none focus:outline-none focus:ring-0  peer ${
+					className={`block pl-6 pr-16 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-[43px] border-[1px]  appearance-none focus:outline-none focus:ring-0  peer ${
 						isError ? "border-red-600" : "border-gray-300 focus:border-blue-600"
 					}`}
 					placeholder=" "
@@ -102,12 +104,19 @@ const Password = ({
 					{label}
 				</label>
 				{enableShowPassword && (
-					<span
-						onClick={() => setShowPwd((prev) => !prev)}
-						className="absolute top-4 right-3 font-semibold text-xs text-[#7265E3] cursor-pointer"
-					>
-						Show password
-					</span>
+					<>
+						{showPwd ? (
+							<HiOutlineEyeOff
+								onClick={() => setShowPwd((prev) => !prev)}
+								className="absolute top-[15px] right-4 cursor-pointer w-5 h-5 text-[#394252] hover:text-[#7265E3]"
+							/>
+						) : (
+							<HiOutlineEye
+								onClick={() => setShowPwd((prev) => !prev)}
+								className="absolute top-[15px] right-4 cursor-pointer w-5 h-5 text-[#394252] hover:text-[#7265E3]"
+							/>
+						)}
+					</>
 				)}
 			</div>
 			{isError && (

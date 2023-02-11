@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { motion } from "framer-motion"
 
 // Components
 import AccordionItem from "./AccordionItem"
@@ -22,7 +23,15 @@ const Accordion = () => {
 			<h2 className="text-4xl text-center mb-16">
 				Frequently Asked Questions (FAQs)
 			</h2>
-			<div className="max-w-[900px]  m-auto divide-y-[1px] divider-y-[#E0E0E0]">
+			<motion.div
+				initial={{ opacity: 0 }}
+				whileInView={{
+					opacity: 1,
+					transition: { staggerChildren: 0.1, duration: 0.8 },
+				}}
+				viewport={{ once: true, margin: "0px 0px -200px 0px" }}
+				className="max-w-[900px]  m-auto divide-y-[1px] divider-y-[#E0E0E0]"
+			>
 				{accordionDummyData.map((item) => (
 					<AccordionItem
 						key={item.id}
@@ -31,7 +40,7 @@ const Accordion = () => {
 						selected={selected}
 					/>
 				))}
-			</div>
+			</motion.div>
 		</section>
 	)
 }

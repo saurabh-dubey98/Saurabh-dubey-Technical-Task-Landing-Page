@@ -1,3 +1,4 @@
+import { motion } from "framer-motion"
 import { HiMinus, HiPlus } from "react-icons/hi"
 
 type Props = {
@@ -13,10 +14,16 @@ type Props = {
 
 const AccordionItem = ({ item, toggle, selected }: Props) => {
 	return (
-		<div key={item.id} className="px-12 pt-2">
+		<motion.div
+			initial={{ y: 40, opacity: 0 }}
+			whileInView={{ y: 0, opacity: 1, transition: { duration: 0.8 } }}
+			viewport={{ once: true }}
+			key={item.id}
+			className="px-12 pt-1"
+		>
 			<div
 				onClick={() => toggle(item.id)}
-				className="flex justify-between items-center h-16 cursor-pointer"
+				className="flex justify-between items-center py-5 cursor-pointer"
 			>
 				<h4 className="text-lg font-medium text-black">{item.title}</h4>
 				<span
@@ -29,12 +36,12 @@ const AccordionItem = ({ item, toggle, selected }: Props) => {
 			</div>
 			<div
 				className={`text-[#545454] duration-300 ease-in-out ${
-					selected === item.id ? "h-auto pb-6" : "pb-0 max-h-0 overflow-hidden"
+					selected === item.id ? "h-auto pb-5" : "pb-0 max-h-0 overflow-hidden"
 				}`}
 			>
 				{item.content}
 			</div>
-		</div>
+		</motion.div>
 	)
 }
 
