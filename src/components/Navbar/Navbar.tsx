@@ -67,8 +67,8 @@ const Navbar = ({ scrollToContactUsRef }: Props) => {
 					/>
 				)}
 				{showMenu && (
-					<div className="absolute top-14 right-0 rounded-[25.5993px] border-[0.87px] border-black bg-white overflow-hidden py-2 px-4">
-						<div className="font-semibold text-sm">{user?.email}</div>
+					<div className="absolute top-14 right-0 rounded-xl shadow-xl border-[0.87px] border-gray-100 bg-white overflow-hidden py-2 px-4">
+						<div className="font-semibold text-[12px]">{user?.email}</div>
 						<button
 							onClick={logout}
 							className="bg-red-800/80 duration-300 active:bg-red-800/90 hover:bg-red-800 font-semibold text-sm text-white px-3 py-[6px] mt-2 rounded-[86.5993px]"

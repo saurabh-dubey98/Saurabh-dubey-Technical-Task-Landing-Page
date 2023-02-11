@@ -89,10 +89,6 @@ const Register = () => {
 		}))
 	}
 
-	const onBlurHandler = () => {
-		// validate()
-	}
-
 	const onSubmitHandler = (e: React.FormEvent) => {
 		e.preventDefault()
 		const result = validate()
@@ -129,7 +125,6 @@ const Register = () => {
 							type="text"
 							errorMsg={formError.name}
 							isError={formError.name ? true : false}
-							onBlur={onBlurHandler}
 						/>
 					</div>
 					<div className="py-3">
@@ -141,7 +136,6 @@ const Register = () => {
 							type="email"
 							errorMsg={formError.email}
 							isError={formError.email ? true : false}
-							onBlur={onBlurHandler}
 						/>
 					</div>
 					<div className="py-3">
@@ -152,7 +146,6 @@ const Register = () => {
 							label="Password"
 							errorMsg={formError.pwd}
 							isError={formError.pwd ? true : false}
-							onBlur={onBlurHandler}
 							enableShowPassword
 						/>
 					</div>
@@ -164,7 +157,6 @@ const Register = () => {
 							label="Confirm password"
 							errorMsg={formError.pwd2}
 							isError={formError.pwd2 ? true : false}
-							onBlur={onBlurHandler}
 						/>
 					</div>
 					<div className="py-3">
@@ -175,7 +167,6 @@ const Register = () => {
 							label="Phone"
 							errorMsg={formError.phone}
 							isError={formError.phone ? true : false}
-							onBlur={onBlurHandler}
 						/>
 					</div>
 					<button

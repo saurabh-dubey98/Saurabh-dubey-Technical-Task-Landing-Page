@@ -12,7 +12,6 @@ type BaseProps = {
 	label: string
 	isError: boolean
 	errorMsg: string
-	onBlur: () => void
 }
 
 const Base = ({
@@ -23,7 +22,6 @@ const Base = ({
 	name,
 	isError,
 	errorMsg,
-	onBlur,
 }: BaseProps) => {
 	return (
 		<div>
@@ -32,7 +30,6 @@ const Base = ({
 					name={name}
 					value={value}
 					onChange={(e) => onChange(e)}
-					onBlur={onBlur}
 					type={type}
 					id={name}
 					className={`block pl-6 pr-32 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-[43px] border-[1px]  appearance-none focus:outline-none focus:ring-0  peer ${
@@ -68,7 +65,6 @@ type Password = {
 	label: string
 	isError: boolean
 	errorMsg: string
-	onBlur: () => void
 	enableShowPassword?: boolean
 }
 
@@ -79,7 +75,6 @@ const Password = ({
 	name,
 	isError,
 	errorMsg,
-	onBlur,
 	enableShowPassword,
 }: Password) => {
 	const [showPwd, setShowPwd] = useState<boolean>(false)
@@ -91,7 +86,6 @@ const Password = ({
 					name={name}
 					value={value}
 					onChange={(e) => onChange(e)}
-					onBlur={onBlur}
 					type={showPwd ? "text" : "password"}
 					id={name}
 					className={`block pl-6 pr-32 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-[43px] border-[1px]  appearance-none focus:outline-none focus:ring-0  peer ${
@@ -138,7 +132,6 @@ type PhoneProps = {
 	label: string
 	isError: boolean
 	errorMsg: string
-	onBlur: () => void
 }
 
 const Phone = ({
@@ -148,7 +141,6 @@ const Phone = ({
 	name,
 	isError,
 	errorMsg,
-	onBlur,
 }: PhoneProps) => {
 	const [selected, setSelected] = useState<{
 		img: string
@@ -228,7 +220,6 @@ const Phone = ({
 					name={name}
 					value={phoneNumber}
 					onChange={(e) => setPhoneNumber(e.target.value)}
-					onBlur={onBlur}
 					type="number"
 					id={name}
 					className={`block pl-1 pr-6 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-[43px]   appearance-none focus:outline-none focus:ring-0 peer`}

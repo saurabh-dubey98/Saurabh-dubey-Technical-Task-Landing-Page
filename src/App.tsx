@@ -7,6 +7,7 @@ import { AuthProvider } from "./context/AuthContext"
 // Pages
 import Home from "./pages/Home"
 import Register from "./pages/Register"
+import Login from "./pages/Login"
 
 // Components
 import { Navbar, Footer } from "./components"
@@ -25,6 +26,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Home destinationRef={destinationRef} />} />
 					<Route path="/register" element={<Register />} />
+					<Route path="/login" element={<Login />} />
 				</Routes>
 				<Footer />
 			</AuthProvider>
