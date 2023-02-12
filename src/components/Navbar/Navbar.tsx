@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { HiOutlineUserCircle } from "react-icons/hi"
+import { motion, AnimatePresence } from "framer-motion"
 
 // Context
 import { useAuthContext } from "../../context/AuthContext"
@@ -66,17 +67,25 @@ const Navbar = ({ scrollToContactUsRef }: Props) => {
 						className="w-10 h-10 cursor-pointer duration-300 text-black hover:text-black/70 active:text-black/50"
 					/>
 				)}
-				{showMenu && (
-					<div className="absolute top-14 right-0 rounded-xl shadow-xl border-[0.87px] border-gray-100 bg-white overflow-hidden py-2 px-4">
-						<div className="font-semibold text-[12px]">{user?.email}</div>
-						<button
-							onClick={logout}
-							className="bg-red-800/80 duration-300 active:bg-red-800/90 hover:bg-red-800 font-semibold text-sm text-white px-3 py-[6px] mt-2 rounded-[86.5993px]"
+
+				<AnimatePresence>
+					{showMenu && (
+						<motion.div
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0, transition: { duration: 0.2 } }}
+							exit={{ opacity: 0, y: 20 }}
+							className="absolute top-14 right-0 rounded-xl shadow-xl border-[0.87px] border-gray-100 bg-white overflow-hidden py-2 px-4"
 						>
-							Logout
-						</button>
-					</div>
-				)}
+							<div className="font-semibold text-[12px]">{user?.email}</div>
+							<button
+								onClick={logout}
+								className="bg-red-800/80 duration-300 active:bg-red-800/90 hover:bg-red-800 font-semibold text-sm text-white px-3 py-[6px] mt-2 rounded-[86.5993px]"
+							>
+								Logout
+							</button>
+						</motion.div>
+					)}
+				</AnimatePresence>
 			</div>
 		</nav>
 	)

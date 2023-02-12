@@ -41,7 +41,7 @@ const Cards = () => {
 					</motion.p>
 					<motion.button
 						initial={{ y: 40, opacity: 0 }}
-						whileInView={{ y: 0, opacity: 1, transition: { duration: 0.3 } }}
+						whileInView={{ y: 0, opacity: 1, transition: { duration: 0.1 } }}
 						viewport={{ once: true }}
 						className="outline-none border-none text-sm text-white bg-[#212024] rounded-[112.222px] py-3 px-6 duration-300 hover:bg-[#212024]/90"
 					>

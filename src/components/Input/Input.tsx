@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { IoIosArrowDown } from "react-icons/io"
 import { HiOutlineEyeOff, HiOutlineEye } from "react-icons/hi"
+import { motion, AnimatePresence } from "framer-motion"
 
 // Images
 import indFlag from "../../assets/ind-flag.png"
@@ -143,14 +144,7 @@ type PhoneProps = {
 	errorMsg: string
 }
 
-const Phone = ({
-	value,
-	onChange,
-	label,
-	name,
-	isError,
-	errorMsg,
-}: PhoneProps) => {
+const Phone = ({ onChange, label, name, isError, errorMsg }: PhoneProps) => {
 	const [selected, setSelected] = useState<{
 		img: string
 		code: string
@@ -162,6 +156,7 @@ const Phone = ({
 	})
 	const [showCountryCodes, setShowCountryCodes] = useState(false)
 	const [phoneNumber, setPhoneNumber] = useState("")
+	const [focus, setFocus] = useState(false)
 
 	const phoneDummyData = [
 		{
@@ -183,12 +178,26 @@ const Phone = ({
 		return () => clearTimeout(timeout)
 	}, [selected.code, phoneNumber])
 
+	const style = `${
+		!isError
+			? focus
+				? "border-blue-600"
+				: "border-gray-300"
+			: "border-red-600"
+	}`
+
+	// isError
+	// 					? "border-red-600"
+	// 					: "border-gray-300 group focus:border-blue-600 "
+
 	return (
 		<div>
 			<div
-				className={`flex items-center gap-2 relative bg-transparent rounded-[43px] border-[1px] appearance-none focus:outline-none focus:ring-0 ${
-					isError ? "border-red-600" : "border-gray-300 focus:border-blue-600"
-				}`}
+				onFocus={() => setFocus(true)}
+				onBlur={() => {
+					setFocus(false)
+				}}
+				className={`flex items-center gap-2 relative bg-transparent rounded-[43px] border-[1px] appearance-none focus:outline-none focus:ring-0 ${style}`}
 			>
 				<div
 					onClick={() => setShowCountryCodes((prev) => !prev)}
@@ -203,35 +212,45 @@ const Phone = ({
 						}`}
 					/>
 				</div>
-				{showCountryCodes && (
-					<div className="bg-white absolute top-12 w-48 z-50 shadow-lg shadow-[rgba(0, 0, 0, 0.1)] py-3">
-						{phoneDummyData.map((item, idx) => (
-							<div
-								key={idx}
-								onClick={() => {
-									setSelected(item)
-									setShowCountryCodes(false)
-								}}
-								className="flex items-center gap-3 cursor-pointer duration-200 hover:bg-gray-400/20 px-5 py-2"
-							>
-								<div className="w-[28px] h-[18px] overflow-hidden">
-									<img className="w-full, h-full object-cover" src={item.img} />
+				<AnimatePresence>
+					{showCountryCodes && (
+						<motion.div
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0, transition: { duration: 0.2 } }}
+							exit={{ opacity: 0, y: 20 }}
+							className="bg-white rounded-lg absolute top-12 max-h-[180px] overflow-hidden overflow-y-auto custom-scroll w-56 z-50 shadow-lg shadow-[rgba(0, 0, 0, 0.1)] py-3"
+						>
+							{phoneDummyData.map((item, idx) => (
+								<div
+									key={idx}
+									onClick={() => {
+										setSelected(item)
+										setShowCountryCodes(false)
+									}}
+									className="flex items-center gap-3 cursor-pointer duration-200 hover:bg-gray-400/20 px-5 py-2"
+								>
+									<div className="w-[28px] h-[18px] overflow-hidden">
+										<img
+											className="w-full, h-full object-cover"
+											src={item.img}
+										/>
+									</div>
+									<span className="text-sm text-black">{item.country}</span>
+									<span className="text-sm font-medium text-[#6E7278]">
+										{item.code}
+									</span>
 								</div>
-								<span className="text-sm text-black">{item.country}</span>
-								<span className="text-sm font-medium text-[#6E7278]">
-									{item.code}
-								</span>
-							</div>
-						))}
-					</div>
-				)}
+							))}
+						</motion.div>
+					)}
+				</AnimatePresence>
 				<input
 					name={name}
 					value={phoneNumber}
 					onChange={(e) => setPhoneNumber(e.target.value)}
 					type="number"
 					id={name}
-					className={`block pl-1 pr-6 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-[43px]   appearance-none focus:outline-none focus:ring-0 peer`}
+					className={`block pl-1 pr-6 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-[43px] appearance-none focus:outline-none focus:ring-0 peer`}
 					placeholder=" "
 				/>
 
